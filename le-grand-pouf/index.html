@@ -1,0 +1,187 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Le Grand Pouf</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shrikhand&family=Archivo:wght@400;500;700;800&family=Courier+Prime&display=swap">
+<style>
+/* Layout : catalogue imprimé 70s — mot-marque géant, bandes de couleur pleine largeur par pièce, lignes d'index à points de conduite, scène "ma pièce" qui se remplit. Thème unique assumé. */
+:root{
+  color-scheme:light;
+  --mustard:#e9b230; --pine:#2f5d4a; --rose:#e8a6a0; --cream:#f6ead2; --plum:#2a1720; --tomato:#d2502c;
+  --display:"Shrikhand", "Cooper Black", Georgia, serif;
+  --body:"Archivo", "Arial Narrow", system-ui, sans-serif;
+  --type:"Courier Prime", "Courier New", monospace;
+}
+*{box-sizing:border-box}
+body{background:var(--cream);color:var(--plum);font:400 1rem/1.55 var(--body)}
+.in{max-width:1080px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--plum);outline-offset:3px}
+h1,h2{font-family:var(--display);font-weight:400;margin:0;line-height:.92;text-wrap:balance}
+
+/* Haut de page */
+.top{background:var(--tomato);color:var(--cream)}
+.top .in{padding-block:14px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font:700 .8rem/1.2 var(--body);text-transform:uppercase;letter-spacing:.1em}
+.top nav{display:flex;gap:18px;flex-wrap:wrap}
+.top a{text-decoration:none}
+.top a:hover{text-decoration:underline}
+.mast{background:var(--tomato);color:var(--cream);overflow:hidden}
+.mast .in{padding-block:8px 36px}
+.mast h1{font-size:clamp(3.6rem,15vw,11rem);letter-spacing:-.01em;transform:rotate(-2deg);transform-origin:left bottom}
+.mast .sub{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-top:20px}
+.mast p{max-width:42ch;font-size:1.15rem;margin:0}
+.stamp{font:400 .9rem/1.35 var(--type);border:2px solid var(--cream);padding:10px 14px;transform:rotate(3deg);background:var(--plum)}
+
+/* Bandes pièces */
+.room{padding-block:48px}
+.room.salon{background:var(--mustard)}
+.room.salle{background:var(--pine);color:var(--cream)}
+.room.chambre{background:var(--rose)}
+.room .in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:40px;align-items:start}
+.room h2{font-size:clamp(2.6rem,7vw,5rem)}
+.room .intro{margin:14px 0 0;max-width:30ch;font-weight:500}
+@media (max-width:780px){ .room .in{grid-template-columns:1fr;gap:20px} }
+
+.list{list-style:none;margin:0;padding:0;display:grid}
+.line{display:grid;grid-template-columns:76px minmax(0,1fr) auto;gap:16px;align-items:center;padding-block:14px;border-top:2px solid currentColor}
+.line:last-child{border-bottom:2px solid currentColor}
+.line svg{width:76px;height:auto}
+.name{display:flex;align-items:baseline;gap:8px;min-width:0}
+.name b{font:800 1.15rem/1.2 var(--body);white-space:nowrap}
+.dots{flex:1;border-bottom:2px dotted currentColor;opacity:.6;min-width:20px;transform:translateY(-4px)}
+.name .px{font:700 1.1rem/1 var(--type);font-variant-numeric:tabular-nums;white-space:nowrap}
+.dim{font:400 .82rem/1.4 var(--type);opacity:.85;margin-top:4px}
+.tog{font:800 .78rem/1 var(--body);text-transform:uppercase;letter-spacing:.06em;padding:10px 12px;border-radius:999px;border:2px solid currentColor;background:transparent;color:inherit;cursor:pointer;white-space:nowrap}
+.tog[aria-pressed="true"]{background:var(--plum);color:var(--cream);border-color:var(--plum)}
+.salle .tog[aria-pressed="true"]{background:var(--cream);color:var(--pine);border-color:var(--cream)}
+@media (max-width:520px){
+  .line{grid-template-columns:56px minmax(0,1fr)}
+  .line svg{width:56px}
+  .tog{grid-column:2;justify-self:start}
+  .name b{white-space:normal}
+}
+
+/* Ma pièce */
+.mine{background:var(--plum);color:var(--cream);padding-block:48px}
+.mine .head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap}
+.mine h2{font-size:clamp(2.4rem,6vw,4rem);color:var(--mustard)}
+.total{font:700 clamp(1.6rem,4vw,2.4rem)/1 var(--type);font-variant-numeric:tabular-nums}
+.total small{display:block;font:400 .85rem/1.4 var(--body);opacity:.75;margin-bottom:6px;text-align:right}
+.scene{margin-top:28px;background:var(--cream);border-radius:200px 200px 0 0;min-height:220px;display:flex;align-items:flex-end;justify-content:center;gap:4px;padding:40px 24px 0;position:relative;overflow:hidden;flex-wrap:wrap}
+.scene::after{content:"";position:absolute;left:0;right:0;bottom:0;height:22px;background:var(--mustard)}
+.scene svg{height:120px;width:auto;position:relative;z-index:1;margin-bottom:14px;animation:pop .35s ease-out}
+.scene .empty{color:var(--plum);font:400 1rem/1.5 var(--type);text-align:center;align-self:center;max-width:32ch;margin:0 0 40px}
+@keyframes pop{from{transform:translateY(16px);opacity:.4}to{transform:none;opacity:1}}
+.cta{margin-top:24px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.btn{font:800 1rem/1 var(--body);background:var(--mustard);color:var(--plum);border:0;border-radius:999px;padding:15px 24px;cursor:pointer}
+.btn:hover{background:var(--rose)}
+.note{font:400 .85rem/1.4 var(--type);opacity:.8;margin:0}
+
+/* Bas */
+.foot{background:var(--cream)}
+.foot .in{padding-block:40px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+.foot h3{font:800 .8rem/1 var(--body);text-transform:uppercase;letter-spacing:.1em;margin:0 0 10px}
+.foot p{margin:0;max-width:34ch}
+@media (max-width:700px){ .foot .in{grid-template-columns:1fr} }
+@media (prefers-reduced-motion:reduce){ .scene svg{animation:none} .mast h1{transform:none} }
+</style>
+
+<div class="top"><div class="in">
+  <span>Meubles vintage restaurés · Marseille</span>
+  <nav><a href="#salon">Salon</a><a href="#salle">Salle à manger</a><a href="#chambre">Chambre</a><a href="#ma-piece">Ma pièce</a></nav>
+</div></div>
+
+<header class="mast"><div class="in">
+  <h1>Le Grand Pouf</h1>
+  <div class="sub">
+    <p>On chine des meubles des années 60 et 70, on les restaure à l'atelier, on retapisse ce qui doit l'être. Chaque pièce est unique : quand elle part, elle part.</p>
+    <div class="stamp">ARRIVAGE N° 47<br>1er novembre 2026<br>8 pièces disponibles</div>
+  </div>
+</div></header>
+
+<main>
+  <section class="room salon" id="salon"><div class="in">
+    <div><h2>Le salon</h2><p class="intro">Fauteuils retapissés en velours côtelé, lampes recâblées aux normes.</p></div>
+    <ul class="list" data-room="salon"></ul>
+  </div></section>
+
+  <section class="room salle" id="salle"><div class="in">
+    <div><h2>La salle à manger</h2><p class="intro">Teck danois et formica d'origine, poncés et huilés à la main.</p></div>
+    <ul class="list" data-room="salle"></ul>
+  </div></section>
+
+  <section class="room chambre" id="chambre"><div class="in">
+    <div><h2>La chambre</h2><p class="intro">Rotin, chevets en palissandre et une coiffeuse qui a tout vu.</p></div>
+    <ul class="list" data-room="chambre"></ul>
+  </div></section>
+
+  <section class="mine" id="ma-piece"><div class="in">
+    <div class="head">
+      <h2>Ma pièce</h2>
+      <div class="total"><small>Total de la sélection</small><span id="total">0 €</span></div>
+    </div>
+    <div class="scene" id="scene"><p class="empty">Ajoutez des meubles depuis le catalogue pour composer votre pièce ici.</p></div>
+    <div class="cta">
+      <button class="btn" id="reserve" type="button">Réserver ma sélection</button>
+      <p class="note" id="msg">Réservation gardée 48 h, retrait à l'atelier ou livraison dans toute la Provence.</p>
+    </div>
+  </div></section>
+</main>
+
+<footer class="foot"><div class="in">
+  <div><h3>L'atelier</h3><p>7 traverse des Ébénistes, 13005 Marseille. Ouvert du mercredi au samedi, 11 h à 19 h.</p></div>
+  <div><h3>Nous écrire</h3><p>salut@legrandpouf.fr<br>04 91 00 00 00</p></div>
+  <div><h3>À savoir</h3><p>Marque fictive créée pour la démonstration. Les prix et les pièces sont des exemples.</p></div>
+</div></footer>
+
+<script>
+const C={m:'#e9b230',p:'#2f5d4a',r:'#e8a6a0',t:'#d2502c',k:'#2a1720',w:'#8a5a34',c:'#f6ead2'};
+const art={
+  fauteuil:`<rect x="18" y="20" width="64" height="56" rx="26" fill="${C.t}"/><rect x="10" y="50" width="80" height="26" rx="13" fill="${C.t}"/><rect x="22" y="58" width="56" height="10" rx="5" fill="${C.k}" opacity=".18"/><path d="M26 76l-6 18M74 76l6 18" stroke="${C.w}" stroke-width="5" stroke-linecap="round"/>`,
+  lampe:`<path d="M30 10h40l10 30H20z" fill="${C.m}"/><rect x="47" y="40" width="6" height="46" fill="${C.k}"/><ellipse cx="50" cy="90" rx="22" ry="6" fill="${C.p}"/>`,
+  pouf:`<ellipse cx="50" cy="52" rx="40" ry="14" fill="${C.p}"/><rect x="10" y="52" width="80" height="26" fill="${C.p}"/><ellipse cx="50" cy="78" rx="40" ry="12" fill="${C.p}"/><ellipse cx="50" cy="52" rx="34" ry="10" fill="${C.r}" opacity=".5"/>`,
+  table:`<ellipse cx="50" cy="34" rx="44" ry="10" fill="${C.w}"/><rect x="46" y="38" width="8" height="46" fill="${C.w}"/><ellipse cx="50" cy="88" rx="24" ry="6" fill="${C.k}"/>`,
+  chaise:`<rect x="26" y="10" width="48" height="30" rx="12" fill="${C.w}"/><rect x="22" y="48" width="56" height="10" rx="5" fill="${C.w}"/><path d="M30 58l-6 34M70 58l6 34" stroke="${C.k}" stroke-width="4" stroke-linecap="round"/><rect x="47" y="40" width="6" height="10" fill="${C.k}"/>`,
+  enfilade:`<rect x="6" y="30" width="88" height="44" rx="4" fill="${C.w}"/><rect x="12" y="36" width="36" height="32" fill="${C.m}"/><line x1="54" y1="44" x2="88" y2="44" stroke="${C.k}" stroke-width="2"/><line x1="54" y1="58" x2="88" y2="58" stroke="${C.k}" stroke-width="2"/><path d="M14 74l-4 20M86 74l4 20" stroke="${C.k}" stroke-width="4" stroke-linecap="round"/>`,
+  rotin:`<path d="M20 70Q20 14 50 14Q80 14 80 70z" fill="${C.m}"/><path d="M28 64Q30 24 50 22Q70 24 72 64" fill="none" stroke="${C.w}" stroke-width="2"/><path d="M38 60Q40 32 50 30Q60 32 62 60" fill="none" stroke="${C.w}" stroke-width="2"/><rect x="16" y="66" width="68" height="10" rx="5" fill="${C.t}"/><path d="M30 76l-4 18M70 76l4 18" stroke="${C.w}" stroke-width="4" stroke-linecap="round"/>`,
+  chevet:`<rect x="24" y="30" width="52" height="42" rx="6" fill="${C.w}"/><rect x="30" y="38" width="40" height="12" rx="3" fill="${C.k}" opacity=".25"/><circle cx="50" cy="60" r="3" fill="${C.c}"/><path d="M30 72v20M70 72v20" stroke="${C.k}" stroke-width="4" stroke-linecap="round"/>`,
+  coiffeuse:`<ellipse cx="50" cy="26" rx="20" ry="22" fill="${C.r}" stroke="${C.w}" stroke-width="4"/><rect x="12" y="50" width="76" height="16" rx="3" fill="${C.w}"/><path d="M18 66v28M82 66v28" stroke="${C.k}" stroke-width="4" stroke-linecap="round"/>`
+};
+const items=[
+  {r:'salon',a:'fauteuil',n:'Fauteuil Coquille, 1968',px:480,d:'Velours côtelé tomate · 78 × 72 × 74 cm'},
+  {r:'salon',a:'lampe',n:'Lampadaire Champignon, 1972',px:220,d:'Laiton et opaline · H 150 cm · recâblé'},
+  {r:'salon',a:'pouf',n:'Pouf Galet',px:160,d:'Laine bouclette · Ø 60 × 40 cm'},
+  {r:'salle',a:'table',n:'Table tulipe, 1965',px:690,d:'Teck et fonte · Ø 110 × 74 cm · 4 couverts'},
+  {r:'salle',a:'chaise',n:'Chaises Baumann, les 4',px:520,d:'Hêtre courbé · 44 × 48 × 80 cm'},
+  {r:'salle',a:'enfilade',n:'Enfilade danoise, 1963',px:1150,d:'Teck · 200 × 46 × 76 cm · 4 tiroirs'},
+  {r:'chambre',a:'rotin',n:'Fauteuil Paon en rotin',px:390,d:'Rotin naturel · 90 × 70 × 140 cm'},
+  {r:'chambre',a:'chevet',n:'Chevets palissandre, la paire',px:340,d:'Placage palissandre · 45 × 35 × 50 cm'},
+  {r:'chambre',a:'coiffeuse',n:'Coiffeuse miroir ovale, 1959',px:410,d:'Noyer · 100 × 42 × 140 cm'}
+];
+const eur=v=>v.toLocaleString('fr-FR')+' €';
+const svg=(a,cls='')=>`<svg class="${cls}" viewBox="0 0 100 100" aria-hidden="true">${art[a]}</svg>`;
+items.forEach((it,i)=>{
+  document.querySelector(`.list[data-room="${it.r}"]`).insertAdjacentHTML('beforeend',
+  `<li class="line">${svg(it.a)}<div><div class="name"><b>${it.n}</b><span class="dots"></span><span class="px">${eur(it.px)}</span></div><div class="dim">${it.d}</div></div><button class="tog" id="tog-${i}" type="button" data-i="${i}" aria-pressed="false">+ Ma pièce</button></li>`);
+});
+const picked=new Set(), scene=document.getElementById('scene'), total=document.getElementById('total');
+function render(){
+  if(!picked.size){scene.innerHTML='<p class="empty">Ajoutez des meubles depuis le catalogue pour composer votre pièce ici.</p>';total.textContent='0 €';return;}
+  scene.innerHTML=[...picked].map(i=>svg(items[i].a)).join('');
+  total.textContent=eur([...picked].reduce((s,i)=>s+items[i].px,0));
+}
+document.addEventListener('click',e=>{
+  const b=e.target.closest('.tog'); if(!b)return;
+  const i=+b.dataset.i;
+  if(picked.has(i)){picked.delete(i);b.setAttribute('aria-pressed','false');b.textContent='+ Ma pièce';}
+  else{picked.add(i);b.setAttribute('aria-pressed','true');b.textContent='✓ Ajouté';}
+  render();
+});
+document.getElementById('reserve').addEventListener('click',()=>{
+  document.getElementById('msg').textContent=picked.size
+    ? `${picked.size} pièce${picked.size>1?'s':''} réservée${picked.size>1?'s':''} (démonstration, rien n'est envoyé).`
+    : 'Choisissez au moins un meuble dans le catalogue.';
+});
+</script>
+
+</body></html>

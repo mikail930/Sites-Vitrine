@@ -1,0 +1,224 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Maison Liteau</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Figtree:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout : bandeau d'en-tête, accroche en deux colonnes, grille catalogue filtrable, atelier, contact */
+:root{
+  --bg:#eef0eb; --surface:#f8f9f5; --ink:#1d2622; --muted:#5d6a63; --line:#d3d8cf;
+  --oak:#b9792f; --oak-soft:#ead9c2; --wood:#c99a62; --wood-dark:#8a5c2c; --fabric:#4f6f64;
+  --display:"Bricolage Grotesque", "Trebuchet MS", system-ui, sans-serif;
+  --body:"Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#141a17; --surface:#1c2420; --ink:#e7ebe5; --muted:#9aa79f; --line:#2f3a34;
+  --oak:#dba062; --oak-soft:#3a2d1f; --wood:#b98a55; --wood-dark:#7c5530; --fabric:#6e9184; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#141a17; --surface:#1c2420; --ink:#e7ebe5; --muted:#9aa79f; --line:#2f3a34;
+  --oak:#dba062; --oak-soft:#3a2d1f; --wood:#b98a55; --wood-dark:#7c5530; --fabric:#6e9184; color-scheme:dark }
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:400 1rem/1.6 var(--body)}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+h1,h2,h3{font-family:var(--display);font-weight:700;text-wrap:balance;margin:0;line-height:1.08}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--oak);outline-offset:3px}
+.label{font:500 .72rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+/* En-tête */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top, 0px);z-index:10;background:var(--bg)}
+header{position:sticky;top:env(safe-area-inset-top, 0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px}
+.logo{font:700 1.25rem/1 var(--display);text-decoration:none;display:flex;align-items:baseline;gap:.4rem}
+.logo span{font:400 .7rem/1 var(--mono);color:var(--muted);letter-spacing:.06em}
+nav{display:flex;gap:20px;align-items:center}
+nav a{text-decoration:none;font-weight:500;color:var(--muted)}
+nav a:hover{color:var(--ink)}
+.cart{font:500 .85rem/1 var(--mono);border:1px solid var(--line);border-radius:999px;padding:8px 12px;background:var(--surface);color:var(--ink)}
+@media (max-width:640px){ nav a{display:none} }
+
+/* Accroche */
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding-block:56px 48px}
+.hero h1{font-size:clamp(2.4rem,6vw,4.4rem);letter-spacing:-.02em}
+.hero h1 em{font-style:normal;color:var(--oak)}
+.hero p{max-width:46ch;color:var(--muted);font-size:1.1rem;margin:20px 0 28px}
+.btn{display:inline-block;background:var(--ink);color:var(--bg);text-decoration:none;font-weight:600;padding:13px 22px;border-radius:6px;border:0;cursor:pointer;font-family:var(--body);font-size:1rem}
+.btn:hover{background:var(--oak);color:#1d2622}
+.hero-art{background:var(--oak-soft);border-radius:4px;aspect-ratio:1/1;max-width:100%;display:grid;place-items:center;position:relative}
+.hero-art svg{width:78%;height:auto}
+.hero-art .tag{position:absolute;left:16px;bottom:16px;font:400 .78rem/1.4 var(--mono);color:var(--ink)}
+@media (max-width:760px){ .hero{grid-template-columns:1fr;padding-block:36px} .hero-art{max-width:420px} }
+
+/* Catalogue */
+section{padding-block:56px}
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap;margin-bottom:28px}
+.sec-head h2{font-size:clamp(1.8rem,4vw,2.6rem)}
+.filters{display:flex;gap:8px;flex-wrap:wrap}
+.filters button{font:500 .9rem/1 var(--body);padding:9px 14px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:28px 22px}
+.item{display:flex;flex-direction:column;gap:10px;min-width:0}
+.item .pic{background:var(--surface);border:1px solid var(--line);aspect-ratio:4/3;max-width:100%;display:grid;place-items:center}
+.item .pic svg{width:62%;height:auto}
+.item .row{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.item h3{font-size:1.2rem}
+.price{font:500 1rem/1 var(--mono);font-variant-numeric:tabular-nums}
+.specs{font:400 .8rem/1.5 var(--mono);color:var(--muted)}
+.add{align-self:start;font:600 .9rem/1 var(--body);background:none;border:0;padding:4px 0;color:var(--oak);cursor:pointer;border-bottom:1.5px solid currentColor}
+.add.done{color:var(--fabric)}
+
+/* Atelier */
+.atelier{background:var(--surface);border-block:1px solid var(--line)}
+.atelier .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+.atelier h3{font-size:1.25rem;margin:10px 0 8px}
+.atelier p{color:var(--muted);margin:0;max-width:40ch}
+.atelier .lead{font-size:clamp(1.4rem,3vw,2rem);max-width:28ch;margin-bottom:40px}
+@media (max-width:760px){ .atelier .cols{grid-template-columns:1fr} }
+
+/* Contact */
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.contact address{font-style:normal;color:var(--muted);margin-top:16px;line-height:1.8}
+form{display:grid;gap:14px}
+label{display:grid;gap:6px;font-weight:500;font-size:.92rem}
+input,textarea{font:inherit;padding:11px 12px;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--ink);width:100%}
+textarea{min-height:110px;resize:vertical}
+.ok{color:var(--fabric);font-weight:600;margin:0}
+@media (max-width:760px){ .contact{grid-template-columns:1fr} }
+
+footer{border-top:1px solid var(--line)}
+footer .wrap{padding-block:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;color:var(--muted);font-size:.85rem}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<header>
+  <div class="wrap">
+    <a class="logo" href="#top">Maison Liteau <span>MEUBLES · LYON</span></a>
+    <nav>
+      <a href="#catalogue">Catalogue</a>
+      <a href="#atelier">L'atelier</a>
+      <a href="#contact">Contact</a>
+      <span class="cart" id="cart">Panier · 0</span>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="wrap hero">
+    <div>
+      <p class="label">Collection automne 2026</p>
+      <h1>Des meubles en bois massif, <em>faits pour durer</em>.</h1>
+      <p>Chaises, tables et rangements fabriqués à la main dans notre atelier, en chêne et en noyer issus de forêts gérées durablement. Livraison en France sous 3 semaines.</p>
+      <a class="btn" href="#catalogue">Voir le catalogue</a>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <svg viewBox="0 0 200 200">
+        <rect x="40" y="70" width="120" height="12" rx="2" fill="var(--wood-dark)"/>
+        <rect x="50" y="82" width="10" height="90" fill="var(--wood)"/>
+        <rect x="140" y="82" width="10" height="90" fill="var(--wood)"/>
+        <rect x="60" y="120" width="80" height="6" fill="var(--wood)"/>
+        <rect x="88" y="44" width="10" height="26" rx="2" fill="var(--fabric)"/>
+        <ellipse cx="93" cy="42" rx="18" ry="6" fill="var(--fabric)"/>
+        <rect x="114" y="56" width="22" height="14" rx="2" fill="var(--oak)"/>
+      </svg>
+      <span class="tag">Table Rhône · chêne · 160 × 90 × 75 cm</span>
+    </div>
+  </div>
+
+  <section id="catalogue">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Catalogue</h2>
+        <div class="filters" role="group" aria-label="Filtrer par pièce">
+          <button id="f-tout" data-f="tout" aria-pressed="true">Tout</button>
+          <button id="f-salon" data-f="salon" aria-pressed="false">Salon</button>
+          <button id="f-salle" data-f="salle" aria-pressed="false">Salle à manger</button>
+          <button id="f-chambre" data-f="chambre" aria-pressed="false">Chambre</button>
+        </div>
+      </div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <section id="atelier" class="atelier">
+    <div class="wrap">
+      <p class="label">L'atelier</p>
+      <h2 class="lead">Quatre ébénistes, un atelier à Villeurbanne, et pas de colle là où un assemblage suffit.</h2>
+      <div class="cols">
+        <div><p class="label">Bois</p><h3>Chêne et noyer français</h3><p>Bois séché 18 mois à l'air libre, certifié PEFC, acheté à des scieries du Jura et de l'Allier.</p></div>
+        <div><p class="label">Finition</p><h3>Huile dure naturelle</h3><p>Pas de vernis. Une huile à base de lin qui se ravive en deux minutes avec un chiffon.</p></div>
+        <div><p class="label">Garantie</p><h3>10 ans sur la structure</h3><p>Pieds, assemblages et plateaux. Nous réparons aussi les meubles achetés chez nous il y a longtemps.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap contact">
+      <div>
+        <p class="label">Contact</p>
+        <h2 style="font-size:clamp(1.8rem,4vw,2.6rem);margin-top:10px">Venez toucher le bois</h2>
+        <address>
+          Showroom ouvert du mardi au samedi, 10 h – 19 h<br>
+          12 rue des Menuisiers, 69100 Villeurbanne<br>
+          bonjour@maisonliteau.fr · 04 78 00 00 00
+        </address>
+      </div>
+      <form id="form">
+        <label for="nom">Nom<input id="nom" required autocomplete="name"></label>
+        <label for="email">E-mail<input id="email" type="email" required autocomplete="email"></label>
+        <label for="msg">Message<textarea id="msg" placeholder="Une question sur une dimension, une essence de bois, un sur-mesure…"></textarea></label>
+        <button class="btn" type="submit">Envoyer</button>
+        <p class="ok" id="ok" hidden>Merci, votre message est bien noté. Exemple de démonstration : rien n'est réellement envoyé.</p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap"><span>© 2026 Maison Liteau · marque fictive de démonstration</span><span>Fabriqué à la main en France</span></div></footer>
+
+<script>
+const W='var(--wood)',D='var(--wood-dark)',F='var(--fabric)',O='var(--oak)';
+const art={
+  chaise:`<rect x="62" y="20" width="8" height="120" fill="${D}"/><rect x="62" y="20" width="56" height="8" fill="${D}"/><rect x="62" y="40" width="56" height="5" fill="${W}"/><rect x="58" y="86" width="70" height="9" fill="${W}"/><rect x="120" y="95" width="8" height="45" fill="${D}"/>`,
+  table:`<rect x="20" y="58" width="120" height="10" fill="${D}"/><rect x="30" y="68" width="8" height="70" fill="${W}"/><rect x="122" y="68" width="8" height="70" fill="${W}"/><rect x="38" y="100" width="84" height="5" fill="${W}"/>`,
+  etagere:`<rect x="40" y="18" width="7" height="124" fill="${D}"/><rect x="113" y="18" width="7" height="124" fill="${D}"/>${[30,62,94,126].map(y=>`<rect x="40" y="${y}" width="80" height="6" fill="${W}"/>`).join('')}<rect x="54" y="42" width="8" height="20" fill="${F}"/><rect x="64" y="46" width="8" height="16" fill="${O}"/><circle cx="96" cy="86" r="8" fill="${F}"/>`,
+  canape:`<rect x="20" y="60" width="120" height="30" rx="6" fill="${F}"/><rect x="14" y="78" width="132" height="34" rx="6" fill="${F}"/><rect x="24" y="80" width="112" height="12" rx="4" fill="var(--bg)" opacity=".25"/><rect x="24" y="112" width="6" height="18" fill="${D}"/><rect x="130" y="112" width="6" height="18" fill="${D}"/>`,
+  lit:`<rect x="20" y="48" width="10" height="84" fill="${D}"/><rect x="20" y="48" width="40" height="36" fill="${W}"/><rect x="30" y="88" width="120" height="24" fill="${W}"/><rect x="34" y="78" width="112" height="12" rx="3" fill="${F}"/><rect x="140" y="112" width="8" height="20" fill="${D}"/>`,
+  lampe:`<path d="M58 30h44l12 40H46z" fill="${O}"/><rect x="77" y="70" width="6" height="58" fill="${D}"/><rect x="58" y="128" width="44" height="8" rx="2" fill="${W}"/>`,
+  buffet:`<rect x="16" y="44" width="128" height="66" fill="${W}"/><line x1="58" y1="44" x2="58" y2="110" stroke="${D}" stroke-width="2"/><line x1="102" y1="44" x2="102" y2="110" stroke="${D}" stroke-width="2"/><circle cx="50" cy="77" r="3" fill="${D}"/><circle cx="110" cy="77" r="3" fill="${D}"/><rect x="24" y="110" width="6" height="22" fill="${D}"/><rect x="130" y="110" width="6" height="22" fill="${D}"/>`,
+  chevet:`<rect x="48" y="48" width="64" height="58" fill="${W}"/><line x1="48" y1="76" x2="112" y2="76" stroke="${D}" stroke-width="2"/><rect x="72" y="60" width="16" height="4" rx="2" fill="${D}"/><rect x="54" y="106" width="6" height="28" fill="${D}"/><rect x="100" y="106" width="6" height="28" fill="${D}"/>`
+};
+const produits=[
+  {n:'Chaise Saône',p:'salle',a:'chaise',prix:290,s:'Chêne huilé · 45 × 50 × 82 cm'},
+  {n:'Table Rhône',p:'salle',a:'table',prix:1480,s:'Chêne massif · 160 × 90 × 75 cm · 6 couverts'},
+  {n:'Buffet Croix-Rousse',p:'salle',a:'buffet',prix:1690,s:'Noyer · 180 × 45 × 78 cm · 3 portes'},
+  {n:'Canapé Tête d\'Or',p:'salon',a:'canape',prix:2350,s:'Lin lavé, piètement chêne · 210 × 92 × 80 cm'},
+  {n:'Étagère Fourvière',p:'salon',a:'etagere',prix:640,s:'Chêne · 80 × 30 × 180 cm · 4 niveaux'},
+  {n:'Lampadaire Pentes',p:'salon',a:'lampe',prix:340,s:'Noyer et lin · Ø 42 × 155 cm · E27'},
+  {n:'Lit Confluence',p:'chambre',a:'lit',prix:1590,s:'Chêne · couchage 160 × 200 cm'},
+  {n:'Chevet Brotteaux',p:'chambre',a:'chevet',prix:390,s:'Noyer · 45 × 38 × 55 cm · 1 tiroir'}
+];
+const eur=v=>v.toLocaleString('fr-FR')+' €';
+const grid=document.getElementById('grid');
+grid.innerHTML=produits.map((x,i)=>`<article class="item" data-p="${x.p}">
+  <div class="pic"><svg viewBox="0 0 160 150" aria-hidden="true">${art[x.a]}</svg></div>
+  <div class="row"><h3>${x.n}</h3><span class="price">${eur(x.prix)}</span></div>
+  <div class="specs">${x.s}</div>
+  <button class="add" id="add-${i}" type="button">Ajouter au panier</button>
+</article>`).join('');
+
+let n=0;const cart=document.getElementById('cart');
+grid.addEventListener('click',e=>{
+  const b=e.target.closest('.add'); if(!b||b.classList.contains('done'))return;
+  b.classList.add('done'); b.textContent='Ajouté ✓'; cart.textContent='Panier · '+(++n);
+});
+document.querySelectorAll('.filters button').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('.filters button').forEach(o=>o.setAttribute('aria-pressed',o===b));
+  const f=b.dataset.f;
+  grid.querySelectorAll('.item').forEach(it=>it.hidden=!(f==='tout'||it.dataset.p===f));
+}));
+document.getElementById('form').addEventListener('submit',e=>{e.preventDefault();document.getElementById('ok').hidden=false;e.target.reset();});
+</script>
+
+</body></html>

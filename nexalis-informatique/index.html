@@ -1,0 +1,533 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Nexalis Informatique</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Nexalis, services informatiques à Paris : installation réseau et Wi-Fi, dépannage et maintenance, création de sites internet. Intervention sur site, devis gratuit.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Condensed:wght@500;600&display=swap">
+<style>
+/* Société de services : barre d'infos, en-tête blanc, bandeau marine avec un réseau vivant, puis des blocs nets à angles droits.
+   Un seul thème, clair, voulu. Le mouvement : réseau animé, défilement des demandes, frise qui se remplit, apparitions au défilement. */
+:root {
+  color-scheme: light;
+  --marine: #0A2342; --marine-2: #0F2F58; --bleu: #1656C2; --bleu-clair: #7FB2FF; --ciel: #E9F1FD;
+  --encre: #14233A; --gris: #586579; --trait: #DCE2EA; --fond: #F4F6F9; --blanc: #FFFFFF; --note: #FFE98A;
+  --f: "IBM Plex Sans", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --f-c: "IBM Plex Sans Condensed", "Arial Narrow", "Segoe UI", Arial, sans-serif;
+  --ease: cubic-bezier(.2, .7, .2, 1);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body { background: var(--blanc); color: var(--encre); font-family: var(--f); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--marine); }
+.w { max-width: 1160px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+a { color: var(--bleu); }
+:focus-visible { outline: 3px solid var(--bleu-clair); outline-offset: 3px; }
+h1, h2, h3 { margin: 0; font-weight: 600; text-wrap: balance; letter-spacing: -.01em; }
+h2 { font-size: clamp(1.75rem, 4.6vw, 2.5rem); line-height: 1.15; }
+h3 { font-size: 1.2rem; line-height: 1.3; }
+p { margin: 0; }
+.sur { font: 600 .82rem/1 var(--f-c); letter-spacing: .16em; text-transform: uppercase; color: var(--bleu); display: flex; align-items: center; gap: 10px; }
+.sur::before { content: ""; width: 28px; height: 2px; background: currentColor; }
+.tete { display: flex; flex-direction: column; gap: 14px; max-width: 720px; margin-bottom: 40px; }
+.tete p { color: var(--gris); font-size: 1.08rem; }
+section { padding-block: 76px; scroll-margin-top: 70px; }
+@media (max-width: 700px) { section { padding-block: 56px; } }
+
+/* boutons */
+.btn { display: inline-flex; align-items: center; gap: 10px; min-height: 50px; padding: 0 24px; border: 0; border-radius: 3px; background: var(--bleu); color: var(--blanc); font: 600 1rem var(--f); text-decoration: none; cursor: pointer; transition: background .2s, transform .2s var(--ease); }
+.btn::after { content: "→"; transition: transform .25s var(--ease); }
+.btn:hover { background: #0F47A6; }
+.btn:hover::after { transform: translateX(5px); }
+.btn.clair { background: transparent; color: var(--blanc); box-shadow: inset 0 0 0 1.5px rgba(255,255,255,.55); }
+.btn.clair:hover { background: rgba(255,255,255,.1); }
+
+/* barre d'infos */
+.infos { background: var(--marine); color: #C9D6E8; font-size: .88rem; }
+.infos .w { display: flex; justify-content: space-between; gap: 16px; min-height: 38px; align-items: center; }
+.infos b { color: var(--blanc); font-weight: 600; }
+.infos .droite { display: flex; gap: 22px; }
+@media (max-width: 700px) { .infos .mail, .infos .zone { display: none; } .infos .w { justify-content: center; } }
+
+/* en-tête */
+.haut { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--blanc); border-bottom: 1px solid var(--trait); transition: box-shadow .3s; }
+.haut.bas { box-shadow: 0 6px 24px rgba(10, 35, 66, .1); }
+.haut .w { display: flex; align-items: center; gap: 18px; min-height: 68px; }
+.logo { display: inline-flex; align-items: center; gap: 11px; margin-right: auto; text-decoration: none; color: var(--marine); font: 700 1.28rem var(--f); letter-spacing: .14em; }
+.logo svg { width: 34px; height: 34px; flex: none; }
+.nav { display: flex; align-items: center; gap: 4px; }
+.nav a { position: relative; padding: 10px 13px; color: var(--encre); text-decoration: none; font-weight: 500; font-size: .98rem; }
+.nav a:not(.btn)::after { content: ""; position: absolute; left: 13px; right: 13px; bottom: 4px; height: 2px; background: var(--bleu); transform: scaleX(0); transform-origin: left; transition: transform .3s var(--ease); }
+.nav a:not(.btn):hover::after, .nav a.ici::after { transform: scaleX(1); }
+.nav .btn { min-height: 42px; padding: 0 18px; margin-left: 10px; color: var(--blanc); }
+.burger { display: none; width: 46px; height: 46px; border: 1px solid var(--trait); border-radius: 3px; background: var(--blanc); cursor: pointer; padding: 0; }
+.burger i { display: block; width: 20px; height: 2px; background: var(--marine); margin: 4px auto; transition: transform .25s var(--ease), opacity .2s; }
+.burger[aria-expanded="true"] i:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.burger[aria-expanded="true"] i:nth-child(2) { opacity: 0; }
+.burger[aria-expanded="true"] i:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+@media (max-width: 900px) {
+  .burger { display: block; }
+  .nav { position: absolute; left: 0; right: 0; top: 100%; background: var(--blanc); border-bottom: 1px solid var(--trait); flex-direction: column; align-items: stretch; gap: 0; padding: 6px max(20px, env(safe-area-inset-right, 0px)) 18px max(20px, env(safe-area-inset-left, 0px)); display: none; box-shadow: 0 18px 30px rgba(10, 35, 66, .12); }
+  .nav.ouvert { display: flex; }
+  .nav a { padding: 14px 4px; border-bottom: 1px solid var(--trait); font-size: 1.05rem; }
+  .nav a:not(.btn)::after { display: none; }
+  .nav .btn { margin: 14px 0 0; justify-content: center; border-bottom: 0; min-height: 50px; }
+}
+
+/* bandeau */
+.bandeau { position: relative; background: var(--marine); color: var(--blanc); overflow: hidden; padding-block: 0; }
+.bandeau canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.bandeau::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, var(--marine) 0%, rgba(10,35,66,.82) 42%, rgba(10,35,66,.25) 100%); pointer-events: none; }
+.bandeau .w { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, .85fr); gap: 48px; align-items: center; padding-block: 84px 92px; }
+.bandeau .w > * { min-width: 0; }
+.bandeau .sur { color: var(--bleu-clair); }
+.bandeau h1 { font-size: clamp(2.2rem, 6.6vw, 3.9rem); line-height: 1.08; font-weight: 600; letter-spacing: -.02em; margin: 18px 0 10px; }
+.tourne { display: block; height: 1.3em; overflow: hidden; color: var(--bleu-clair); font-size: clamp(1.25rem, 3.6vw, 1.8rem); font-weight: 500; line-height: 1.3; }
+.tourne span { display: block; height: 1.3em; white-space: nowrap; transition: transform .6s var(--ease); }
+.bandeau .texte { color: #C9D6E8; font-size: 1.12rem; max-width: 56ch; margin: 20px 0 30px; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.atouts { list-style: none; margin: 0; padding: 0; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.16); border-left: 3px solid var(--bleu-clair); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+.atouts li { display: flex; gap: 14px; padding: 18px 20px; border-top: 1px solid rgba(255,255,255,.12); }
+.atouts li:first-child { border-top: 0; }
+.atouts svg { width: 26px; height: 26px; flex: none; margin-top: 2px; stroke: var(--bleu-clair); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.atouts b { display: block; font-weight: 600; }
+.atouts span { color: #B9C8DC; font-size: .96rem; line-height: 1.45; display: block; }
+.monte { animation: monte .9s var(--ease) both; animation-delay: var(--d, 0ms); }
+@keyframes monte { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+@media (max-width: 900px) { .bandeau .w { grid-template-columns: minmax(0, 1fr); gap: 34px; padding-block: 56px 60px; } .bandeau::after { background: rgba(10,35,66,.5); } }
+
+/* défilement des demandes */
+.defile { background: var(--fond); border-bottom: 1px solid var(--trait); overflow: hidden; padding-block: 0; }
+.defile .piste { display: flex; width: max-content; animation: defile 46s linear infinite; }
+.defile ul { display: flex; list-style: none; margin: 0; padding: 0; }
+.defile li { padding: 15px 0; white-space: nowrap; font: 500 .98rem var(--f-c); letter-spacing: .06em; text-transform: uppercase; color: var(--gris); }
+.defile li::after { content: ""; display: inline-block; width: 6px; height: 6px; background: var(--bleu); margin: 0 26px 2px; }
+@keyframes defile { to { transform: translateX(-50%); } }
+
+/* services */
+.trois { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+.service { position: relative; background: var(--blanc); border: 1px solid var(--trait); padding: 30px 26px 28px; display: flex; flex-direction: column; gap: 14px; min-width: 0; transition: transform .35s var(--ease), box-shadow .35s var(--ease), border-color .3s; }
+.service::before { content: ""; position: absolute; left: -1px; right: -1px; top: -1px; height: 3px; background: var(--bleu); transform: scaleX(0); transform-origin: left; transition: transform .5s var(--ease); }
+.service:hover { transform: translateY(-5px); box-shadow: 0 18px 40px rgba(10, 35, 66, .12); border-color: #C5D0DE; }
+.service:hover::before, .service.vu::before { transform: scaleX(1); }
+.service .ico { width: 54px; height: 54px; background: var(--ciel); display: grid; place-items: center; }
+.service .ico svg { width: 30px; height: 30px; fill: none; stroke: var(--bleu); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.service .ico path { stroke-dasharray: 1; stroke-dashoffset: 0; }
+.service.pre .ico path { stroke-dashoffset: 1; }
+.service .ico path { transition: stroke-dashoffset 1.4s var(--ease) .25s; }
+.service p { color: var(--gris); }
+.service ul { list-style: none; margin: 4px 0 0; padding: 14px 0 0; border-top: 1px solid var(--trait); display: flex; flex-direction: column; gap: 9px; font-size: .98rem; }
+.service li { padding-left: 20px; position: relative; }
+.service li::before { content: ""; position: absolute; left: 0; top: .62em; width: 8px; height: 8px; border-right: 2px solid var(--bleu); border-bottom: 2px solid var(--bleu); transform: rotate(-45deg) translateY(-3px); }
+@media (max-width: 940px) { .trois { grid-template-columns: minmax(0, 1fr); } }
+
+/* engagements */
+.gris { background: var(--fond); border-block: 1px solid var(--trait); }
+.deux { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 56px; align-items: start; }
+.deux > * { min-width: 0; }
+.deux > .tete { position: sticky; top: 110px; margin: 0; }
+.engag { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: var(--trait); border: 1px solid var(--trait); }
+.engag div { background: var(--blanc); padding: 26px 24px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.engag svg { width: 28px; height: 28px; fill: none; stroke: var(--bleu); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; margin-bottom: 6px; }
+.engag p { color: var(--gris); font-size: .98rem; }
+@media (max-width: 940px) { .deux { grid-template-columns: minmax(0, 1fr); gap: 30px; } .deux > .tete { position: static; } }
+@media (max-width: 560px) { .engag { grid-template-columns: minmax(0, 1fr); } }
+
+/* méthode */
+.frise { position: relative; list-style: none; margin: 0; padding: 34px 0 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 26px; }
+.frise::before, .frise::after { content: ""; position: absolute; left: 0; right: 0; top: 10px; height: 2px; background: var(--trait); }
+.frise::after { background: var(--bleu); transform: scaleX(var(--p, 0)); transform-origin: left; transition: transform .25s linear; }
+.frise li { position: relative; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.frise li::before { content: ""; position: absolute; left: 0; top: -31px; width: 16px; height: 16px; border-radius: 50%; background: var(--blanc); border: 2px solid var(--trait); z-index: 1; transition: background .3s, border-color .3s, transform .3s var(--ease); }
+.frise li.fait::before { background: var(--bleu); border-color: var(--bleu); transform: scale(1.15); }
+.frise .n { font: 600 .82rem var(--f-c); letter-spacing: .14em; color: var(--bleu); text-transform: uppercase; }
+.frise p { color: var(--gris); font-size: .98rem; }
+@media (max-width: 860px) {
+  .frise { grid-template-columns: minmax(0, 1fr); padding: 0 0 0 34px; gap: 30px; }
+  .frise::before, .frise::after { left: 7px; right: auto; top: 4px; bottom: 4px; width: 2px; height: auto; }
+  .frise::after { transform: scaleY(var(--p, 0)); transform-origin: top; }
+  .frise li::before { left: -34px; top: 3px; }
+}
+
+/* tarifs */
+.table { width: 100%; border-collapse: collapse; border: 1px solid var(--trait); }
+.table th { background: var(--marine); color: var(--blanc); text-align: left; font: 600 .82rem var(--f-c); letter-spacing: .14em; text-transform: uppercase; padding: 14px 20px; }
+.table td { padding: 20px; border-top: 1px solid var(--trait); vertical-align: top; transition: background .2s; }
+.table tr:hover td { background: var(--ciel); }
+.table td b { font-weight: 600; display: block; }
+.table td:not(.prix) > span { color: var(--gris); font-size: .96rem; }
+.table .prix { white-space: nowrap; font-weight: 700; font-size: 1.5rem; color: var(--marine); font-variant-numeric: tabular-nums; line-height: 1.2; }
+.table .prix small { display: block; font-weight: 400; font-size: .88rem; color: var(--gris); }
+.apres { color: var(--gris); font-size: .95rem; margin-top: 16px; max-width: 80ch; }
+@media (max-width: 700px) {
+  .table thead { display: none; }
+  .table, .table tbody, .table tr, .table td { display: block; }
+  .table tr { border-top: 1px solid var(--trait); padding: 18px 16px; }
+  .table tr:first-child { border-top: 0; }
+  .table td { padding: 0; border: 0; }
+  .table td + td { margin-top: 8px; }
+  .table tr:hover td { background: transparent; }
+}
+
+/* société */
+.fiche { border: 1px solid var(--trait); border-top: 3px solid var(--bleu); background: var(--blanc); padding: 26px 24px; }
+.fiche dl { margin: 0; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 12px 20px; }
+.fiche dt { font: 600 .8rem/1.8 var(--f-c); letter-spacing: .12em; text-transform: uppercase; color: var(--gris); }
+.fiche dd { margin: 0; }
+.prose { display: flex; flex-direction: column; gap: 16px; }
+.prose p { color: var(--gris); font-size: 1.05rem; }
+.deux.egal { grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); }
+@media (max-width: 940px) { .deux.egal { grid-template-columns: minmax(0, 1fr); } }
+
+/* contact */
+.contact { background: var(--marine); color: var(--blanc); }
+.contact .sur { color: var(--bleu-clair); }
+.contact .tete p { color: #C9D6E8; }
+.coord { list-style: none; margin: 0; padding: 0; }
+.coord li { padding: 18px 0; border-top: 1px solid rgba(255,255,255,.16); }
+.coord small { display: block; font: 600 .8rem var(--f-c); letter-spacing: .14em; text-transform: uppercase; color: var(--bleu-clair); margin-bottom: 2px; }
+.coord b { font-size: 1.45rem; font-weight: 600; overflow-wrap: anywhere; user-select: all; }
+.coord li > span { display: block; color: #B9C8DC; font-size: .95rem; }
+form { background: var(--blanc); color: var(--encre); padding: 28px 24px; display: flex; flex-direction: column; gap: 14px; }
+label { display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: .95rem; }
+input, select, textarea { font: 400 1rem var(--f); color: var(--encre); background: var(--blanc); border: 1px solid #B9C3D1; border-radius: 3px; padding: 12px; width: 100%; min-width: 0; transition: border-color .2s, box-shadow .2s; }
+textarea { min-height: 120px; resize: vertical; }
+input:focus, select:focus, textarea:focus { outline: none; border-color: var(--bleu); box-shadow: 0 0 0 3px rgba(22, 86, 194, .18); }
+.erreur { color: #A3261C; font-size: .93rem; }
+.sortie { border: 1px dashed #B9C3D1; padding: 14px; display: flex; flex-direction: column; gap: 12px; background: var(--fond); }
+.sortie pre { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; font: 400 .95rem/1.5 var(--f); }
+.sortie small { color: var(--gris); }
+
+/* pied */
+.pied { background: #071A33; color: #A9B8CD; font-size: .95rem; padding-block: 44px 34px; }
+.pied .w { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 1fr); gap: 34px; }
+.pied .w > * { min-width: 0; }
+.pied h3 { color: var(--blanc); font: 600 .82rem var(--f-c); letter-spacing: .14em; text-transform: uppercase; margin-bottom: 12px; }
+.pied a { color: #C9D6E8; text-decoration: none; }
+.pied a:hover { color: var(--blanc); text-decoration: underline; }
+.pied ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 7px; }
+.pied .logo { color: var(--blanc); margin-bottom: 12px; }
+.legal { grid-column: 1 / -1; border-top: 1px solid rgba(255,255,255,.14); padding-top: 18px; }
+.legal summary { cursor: pointer; color: #C9D6E8; font-weight: 500; }
+.legal p { margin-top: 10px; max-width: 90ch; }
+@media (max-width: 800px) { .pied .w { grid-template-columns: minmax(0, 1fr); gap: 26px; } }
+
+.todo { background: var(--note); color: #14233A; padding: 0 4px; }
+
+/* apparition au défilement */
+.r { transition: opacity .8s var(--ease), transform .8s var(--ease); transition-delay: var(--d, 0ms); }
+.r.pre { opacity: 0; transform: translateY(28px); }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .monte, .defile .piste { animation: none; }
+  .r, .r.pre { opacity: 1; transform: none; transition: none; }
+  .service.pre .ico path { stroke-dashoffset: 0; }
+  .tourne span { transition: none; }
+}
+</style>
+<!--BODY-->
+<div class="infos">
+  <div class="w">
+    <span class="zone">Paris et proche banlieue · du lundi au samedi</span>
+    <span class="droite"><span>Tél. <b><span class="todo">06 .. .. .. ..</span></b></span><span class="mail"><b><span class="todo">contact@votre-domaine.fr</span></b></span></span>
+  </div>
+</div>
+
+<header class="haut" id="haut">
+  <div class="w">
+    <a class="logo" href="#accueil" aria-label="Nexalis, retour en haut">
+      <svg viewBox="0 0 34 34" aria-hidden="true"><rect width="34" height="34" rx="3" fill="#0A2342"/><path d="M10 24V10l14 14V10" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="square"/><rect x="22.5" y="8.5" width="3" height="3" fill="#7FB2FF"/></svg>
+      NEXALIS
+    </a>
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="nav" aria-label="Ouvrir le menu"><i></i><i></i><i></i></button>
+    <nav class="nav" id="nav" aria-label="Menu principal">
+      <a href="#services">Services</a>
+      <a href="#engagements">Engagements</a>
+      <a href="#methode">Méthode</a>
+      <a href="#tarifs">Tarifs</a>
+      <a href="#societe">Société</a>
+      <a class="btn" href="#contact">Devis gratuit</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="bandeau" id="accueil">
+  <canvas id="reseau" aria-hidden="true"></canvas>
+  <div class="w">
+    <div>
+      <span class="sur monte">Services informatiques · Paris</span>
+      <h1 class="monte" style="--d:90ms">Votre informatique, suivie par un seul interlocuteur.</h1>
+      <span class="tourne monte" style="--d:180ms" id="tourne" aria-hidden="true"><span>Installation réseau et Wi-Fi</span><span>Dépannage et maintenance</span><span>Création de sites internet</span><span>Installation réseau et Wi-Fi</span></span>
+      <p class="texte monte" style="--d:260ms">Nexalis accompagne les commerces, les indépendants, les petites entreprises et les particuliers. Les interventions se font sur site, à Paris et en proche banlieue, sur la base d'un devis écrit.</p>
+      <div class="actions monte" style="--d:340ms"><a class="btn" href="#contact">Demander un devis</a><a class="btn clair" href="#services">Découvrir les services</a></div>
+    </div>
+    <ul class="atouts monte" style="--d:420ms">
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.500c0 5.300 7 11.500 7 11.500z"/><circle cx="12" cy="9.5" r="2.5"/></svg><div><b>Intervention sur site</b><span>Dans vos locaux ou à votre domicile, sur rendez-vous, y compris le samedi.</span></div></li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h7l4 4v14H7zM14 3v4h4M10 12h5M10 16h5"/></svg><div><b>Devis écrit et gratuit</b><span>Le prix et le contenu de la prestation sont fixés avant le début des travaux.</span></div></li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4.500 20.500a7.500 7.500 0 0 1 15 0"/></svg><div><b>Un interlocuteur unique</b><span>La même personne du premier appel au suivi, qui connaît votre installation.</span></div></li>
+    </ul>
+  </div>
+</section>
+
+<div class="defile" aria-hidden="true">
+  <div class="piste">
+    <ul><li>Wi-Fi instable</li><li>Ordinateur lent</li><li>Imprimante introuvable</li><li>Nouveau poste à installer</li><li>Sauvegarde des données</li><li>Site internet à créer</li><li>Messagerie professionnelle</li><li>Câblage réseau</li><li>Changement de box</li><li>Fiche Google à jour</li></ul>
+    <ul><li>Wi-Fi instable</li><li>Ordinateur lent</li><li>Imprimante introuvable</li><li>Nouveau poste à installer</li><li>Sauvegarde des données</li><li>Site internet à créer</li><li>Messagerie professionnelle</li><li>Câblage réseau</li><li>Changement de box</li><li>Fiche Google à jour</li></ul>
+  </div>
+</div>
+
+<section id="services">
+  <div class="w">
+    <div class="tete r"><span class="sur">Services</span><h2>Trois domaines d'intervention</h2><p>Le réseau, les postes de travail et la présence en ligne dépendent les uns des autres. Nexalis prend en charge les trois.</p></div>
+    <div class="trois">
+      <article class="service r">
+        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M4 14.500h16v5H4z"/><path pathLength="1" d="M7.500 17h.01M11 17h.01M12 14.500V11"/><path pathLength="1" d="M8.800 8.200a4.500 4.500 0 0 1 6.400 0M6.200 5.600a8.200 8.200 0 0 1 11.600 0"/></svg></div>
+        <h3>Réseau et Wi-Fi</h3>
+        <p>Une connexion stable dans tous les locaux, des équipements correctement configurés et sécurisés.</p>
+        <ul><li>Étude et extension de la couverture Wi-Fi</li><li>Câblage, prises réseau, switch</li><li>Réseau invités séparé</li><li>Imprimantes et stockage partagés</li></ul>
+      </article>
+      <article class="service r" style="--d:110ms">
+        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M3 4.500h18v11.500H3z"/><path pathLength="1" d="M9 20h6M12 16v4"/><path pathLength="1" d="M8.500 10.200l2.300 2.300 4.700-4.700"/></svg></div>
+        <h3>Dépannage et maintenance</h3>
+        <p>La remise en service rapide des postes, et les mesures qui évitent que la panne se reproduise.</p>
+        <ul><li>Diagnostic et réparation</li><li>Suppression des virus et logiciels indésirables</li><li>Installation et transfert vers un nouveau poste</li><li>Sauvegardes automatiques et vérifiées</li></ul>
+      </article>
+      <article class="service r" style="--d:220ms">
+        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M3 4.500h18v15H3z"/><path pathLength="1" d="M3 8.500h18M5.800 6.500h.01M8.200 6.500h.01"/><path pathLength="1" d="M7 12.500h6M7 15.500h10"/></svg></div>
+        <h3>Sites internet</h3>
+        <p>Un site clair, lisible sur téléphone, qui présente votre activité et permet de vous contacter.</p>
+        <ul><li>Site vitrine et refonte</li><li>Nom de domaine et messagerie professionnelle</li><li>Fiche d'établissement Google</li><li>Hébergement, mises à jour, sauvegardes</li></ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="gris" id="engagements">
+  <div class="w deux">
+    <div class="tete r"><span class="sur">Engagements</span><h2>Un cadre clair pour chaque intervention</h2><p>Les mêmes règles s'appliquent à toutes les prestations, quel que soit leur montant.</p><div><a class="btn" href="#contact">Prendre contact</a></div></div>
+    <div class="engag r" style="--d:120ms">
+      <div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h7l4 4v14H7zM14 3v4h4M10 12h5M10 16h5"/></svg><h3>Transparence des prix</h3><p>Chaque prestation fait l'objet d'un devis. Aucun supplément n'est facturé sans votre accord préalable.</p></div>
+      <div><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10.500" width="14" height="9.500" rx="1.500"/><path d="M8.500 10.500V8a3.500 3.500 0 0 1 7 0v2.500"/></svg><h3>Confidentialité</h3><p>Seules les données nécessaires à l'intervention sont consultées. Tous vos accès vous sont restitués.</p></div>
+      <div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9h8M8 12h5"/></svg><h3>Explications compréhensibles</h3><p>Un compte rendu vous indique l'origine de la panne, les actions menées et les points à surveiller.</p></div>
+      <div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 0 1 14-5.300M20 4v4h-4M20 12a8 8 0 0 1-14 5.300M4 20v-4h4"/></svg><h3>Suivi dans la durée</h3><p>Votre installation est documentée, ce qui accélère les interventions suivantes.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="methode">
+  <div class="w">
+    <div class="tete r"><span class="sur">Méthode</span><h2>Le déroulement d'une prestation</h2></div>
+    <ol class="frise" id="frise">
+      <li><span class="n">Étape 1</span><h3>Prise de contact</h3><p>Vous décrivez votre besoin par téléphone ou par e-mail, sans termes techniques.</p></li>
+      <li><span class="n">Étape 2</span><h3>Devis</h3><p>Vous recevez une proposition écrite : contenu, prix, délai.</p></li>
+      <li><span class="n">Étape 3</span><h3>Intervention</h3><p>La prestation est réalisée sur site, au créneau convenu, puis vérifiée avec vous.</p></li>
+      <li><span class="n">Étape 4</span><h3>Suivi</h3><p>Vous gardez un contact direct pour toute question après l'intervention.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="gris" id="tarifs">
+  <div class="w">
+    <div class="tete r"><span class="sur">Tarifs</span><h2>Grille tarifaire</h2><p>Les montants ci-dessous sont des prix de départ. Le devis précise le prix définitif.</p></div>
+    <table class="table r">
+      <thead><tr><th scope="col">Prestation</th><th scope="col">Contenu</th><th scope="col">Tarif</th></tr></thead>
+      <tbody>
+        <tr><td><b>Intervention sur site</b><span>Dépannage, installation, réseau</span></td><td><span>Diagnostic, réparation, mise en service de postes, Wi-Fi, imprimantes. Frais de déplacement communiqués avant le rendez-vous.</span></td><td class="prix"><span data-compte="50">50</span> €<small>l'heure</small></td></tr>
+        <tr><td><b>Pack présence en ligne</b><span>Site internet clé en main</span></td><td><span>Site vitrine adapté au mobile, nom de domaine, adresse e-mail professionnelle, fiche d'établissement Google.</span></td><td class="prix"><span data-compte="690">690</span> €<small>à partir de</small></td></tr>
+        <tr><td><b>Contrat de suivi</b><span>Abonnement mensuel</span></td><td><span>Hébergement et mises à jour du site, sauvegardes vérifiées, petites modifications incluses.</span></td><td class="prix"><span data-compte="39">39</span> €<small>par mois, à partir de</small></td></tr>
+      </tbody>
+    </table>
+    <p class="apres">Devis gratuit. Le matériel éventuel est facturé séparément. TVA non applicable, art. 293 B du CGI.</p>
+  </div>
+</section>
+
+<section id="societe">
+  <div class="w deux egal">
+    <div class="prose r">
+      <span class="sur">Société</span>
+      <h2>Une structure à taille humaine</h2>
+      <p>Nexalis est une entreprise individuelle de services informatiques basée à Paris, dirigée par <span class="todo">Prénom Nom</span>, technicien diplômé en informatique et réseaux.</p>
+      <p>Elle s'adresse aux structures qui n'ont pas de service informatique : commerces, artisans, professions libérales, petites entreprises, ainsi qu'aux particuliers.</p>
+      <p>Le réseau, les postes et le site internet sont traités ensemble, par la même personne, ce qui évite de multiplier les prestataires.</p>
+    </div>
+    <div class="fiche r" style="--d:120ms">
+      <dl>
+        <dt>Activité</dt><dd>Services informatiques, réseau, création de sites internet</dd>
+        <dt>Formation</dt><dd>BTS Systèmes numériques, option Informatique et réseaux</dd>
+        <dt>Secteur</dt><dd>Paris et proche banlieue. À distance pour les sites internet.</dd>
+        <dt>Langues</dt><dd>Français, turc, anglais</dd>
+        <dt>Statut</dt><dd>Entreprise individuelle</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="w deux egal">
+    <div>
+      <div class="tete r"><span class="sur">Contact</span><h2>Parlons de votre besoin</h2><p>Une réponse vous est apportée sous un jour ouvré.</p></div>
+      <ul class="coord r">
+        <li><small>Téléphone</small><b><span class="todo">06 .. .. .. ..</span></b><span>Du lundi au samedi</span></li>
+        <li><small>E-mail</small><b id="c-mail"><span class="todo">contact@votre-domaine.fr</span></b></li>
+        <li><small>Secteur d'intervention</small><b>Paris et proche banlieue</b></li>
+      </ul>
+    </div>
+    <div class="r" style="--d:120ms">
+      <form id="f" novalidate>
+        <label for="f-nom">Nom ou raison sociale<input id="f-nom" autocomplete="name"></label>
+        <label for="f-joindre">Téléphone ou e-mail<input id="f-joindre"></label>
+        <label for="f-sujet">Objet de la demande
+          <select id="f-sujet"><option>Réseau et Wi-Fi</option><option>Dépannage ou maintenance</option><option>Site internet</option><option>Contrat de suivi</option><option>Autre demande</option></select>
+        </label>
+        <label for="f-msg">Votre message<textarea id="f-msg"></textarea></label>
+        <p class="erreur" id="f-err" role="alert" hidden>Merci d'indiquer votre nom et un moyen de vous joindre.</p>
+        <button class="btn" type="submit">Préparer ma demande</button>
+        <div class="sortie" id="sortie" hidden>
+          <pre id="s-txt"></pre>
+          <button class="btn" type="button" id="s-copie">Copier le message</button>
+          <a id="s-mail" href="#contact" hidden>Ouvrir dans ma messagerie</a>
+          <small id="s-ok" hidden>Message copié. Il reste à l'envoyer à Nexalis par e-mail ou par SMS.</small>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="pied">
+  <div class="w">
+    <div>
+      <a class="logo" href="#accueil"><svg viewBox="0 0 34 34" aria-hidden="true"><rect width="34" height="34" rx="3" fill="#1656C2"/><path d="M10 24V10l14 14V10" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="square"/></svg>NEXALIS</a>
+      <p>Services informatiques pour les professionnels et les particuliers, à Paris et en proche banlieue.</p>
+    </div>
+    <div><h3>Plan du site</h3><ul><li><a href="#services">Services</a></li><li><a href="#engagements">Engagements</a></li><li><a href="#methode">Méthode</a></li><li><a href="#tarifs">Tarifs</a></li><li><a href="#societe">Société</a></li></ul></div>
+    <div><h3>Contact</h3><ul><li><span class="todo">06 .. .. .. ..</span></li><li><span class="todo">contact@votre-domaine.fr</span></li><li>Du lundi au samedi</li></ul></div>
+    <details class="legal">
+      <summary>Mentions légales</summary>
+      <p>Nexalis, nom commercial de <span class="todo">Prénom Nom</span>, entrepreneur individuel. SIRET <span class="todo">numéro</span>. Adresse : <span class="todo">adresse de domiciliation</span>. Directeur de la publication : <span class="todo">Prénom Nom</span>.</p>
+      <p>Hébergement : <span class="todo">nom, adresse et téléphone de l'hébergeur</span>.</p>
+      <p>Ce site ne dépose aucun cookie de suivi. Les informations transmises par téléphone ou par e-mail servent uniquement à traiter votre demande et à établir votre devis. Vous pouvez en demander la rectification ou la suppression à l'adresse e-mail ci-dessus.</p>
+    </details>
+    <p style="grid-column:1/-1;margin:0">© 2026 Nexalis. Tous droits réservés.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  var calme = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* menu */
+  var nav = $('#nav'), burger = $('#burger'), haut = $('#haut');
+  burger.addEventListener('click', function () { var o = nav.classList.toggle('ouvert'); burger.setAttribute('aria-expanded', String(o)); });
+  nav.addEventListener('click', function (e) { if (e.target.closest('a')) { nav.classList.remove('ouvert'); burger.setAttribute('aria-expanded', 'false'); } });
+
+  /* apparitions */
+  var rs = $$('.r');
+  if ('IntersectionObserver' in window && !calme) {
+    rs.forEach(function (el) { if (el.getBoundingClientRect().top > innerHeight * .9) el.classList.add('pre'); });
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        e.target.classList.remove('pre'); e.target.classList.add('vu'); io.unobserve(e.target);
+        $$('[data-compte]', e.target).forEach(compte);
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: .08 });
+    rs.forEach(function (el) { io.observe(el); });
+  } else rs.forEach(function (el) { el.classList.add('vu'); });
+
+  function compte(el) {
+    var fin = +el.dataset.compte, t0 = null, dur = 900;
+    function pas(t) { if (!t0) t0 = t; var k = Math.min(1, (t - t0) / dur), v = 1 - Math.pow(1 - k, 3); el.textContent = Math.round(fin * v); if (k < 1) requestAnimationFrame(pas); else el.textContent = fin; }
+    requestAnimationFrame(pas);
+  }
+
+  /* phrase tournante */
+  var tourne = $('#tourne');
+  if (tourne && !calme) {
+    var items = $$('span', tourne), i = 0;
+    setInterval(function () {
+      i++;
+      items.forEach(function (s) { s.style.transition = ''; s.style.transform = 'translateY(' + (-100 * i) + '%)'; });
+      if (i === items.length - 1) setTimeout(function () { i = 0; items.forEach(function (s) { s.style.transition = 'none'; s.style.transform = 'translateY(0)'; }); }, 700);
+    }, 2800);
+  }
+
+  /* défilement : ombre de l'en-tête, rubrique active, frise */
+  var frise = $('#frise'), etapes = $$('li', frise), secs = $$('main section[id]'), liens = $$('a:not(.btn)', nav), attente = false;
+  function defile() {
+    attente = false;
+    haut.classList.toggle('bas', window.scrollY > 40);
+    var r = frise.getBoundingClientRect(), p = Math.max(0, Math.min(1, (innerHeight * .72 - r.top) / Math.max(1, r.height + innerHeight * .12)));
+    if (calme) p = 1;
+    frise.style.setProperty('--p', p.toFixed(3));
+    etapes.forEach(function (li, n) { li.classList.toggle('fait', p > n / etapes.length + .04); });
+    var ici = '';
+    secs.forEach(function (s) { if (s.getBoundingClientRect().top < innerHeight * .4) ici = s.id; });
+    liens.forEach(function (a) { a.classList.toggle('ici', a.getAttribute('href') === '#' + ici); });
+  }
+  window.addEventListener('scroll', function () { if (!attente) { attente = true; requestAnimationFrame(defile); } }, { passive: true });
+  window.addEventListener('resize', defile);
+  defile();
+
+  /* réseau vivant du bandeau */
+  var cv = $('#reseau'), cx = cv.getContext('2d'), W = 0, H = 0, pts = [], paquets = [], visible = true, dpr = Math.min(2, window.devicePixelRatio || 1);
+  function taille() {
+    var b = cv.parentNode.getBoundingClientRect();
+    W = b.width; H = b.height; cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr); cx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    var n = Math.round(Math.min(64, Math.max(20, W * H / 17000)));
+    pts = [];
+    for (var k = 0; k < n; k++) pts.push({ x: Math.random() * W, y: Math.random() * H, vx: (Math.random() - .5) * .22, vy: (Math.random() - .5) * .22, r: Math.random() < .18 ? 3 : 1.7 });
+    paquets = [];
+  }
+  function dessine(bouge) {
+    cx.clearRect(0, 0, W, H);
+    var D = Math.min(190, Math.max(120, W / 6)), liensActifs = [];
+    for (var a = 0; a < pts.length; a++) {
+      var p = pts[a];
+      if (bouge) { p.x += p.vx; p.y += p.vy; if (p.x < -20) p.x = W + 20; if (p.x > W + 20) p.x = -20; if (p.y < -20) p.y = H + 20; if (p.y > H + 20) p.y = -20; }
+      for (var b2 = a + 1; b2 < pts.length; b2++) {
+        var q = pts[b2], dx = p.x - q.x, dy = p.y - q.y, d = Math.sqrt(dx * dx + dy * dy);
+        if (d < D) { cx.strokeStyle = 'rgba(127,178,255,' + (.44 * (1 - d / D)).toFixed(3) + ')'; cx.lineWidth = 1; cx.beginPath(); cx.moveTo(p.x, p.y); cx.lineTo(q.x, q.y); cx.stroke(); liensActifs.push([a, b2]); }
+      }
+    }
+    for (var c = 0; c < pts.length; c++) { var o = pts[c]; cx.fillStyle = o.r > 2 ? 'rgba(127,178,255,.95)' : 'rgba(201,214,232,.7)'; cx.beginPath(); cx.arc(o.x, o.y, o.r, 0, 6.2832); cx.fill(); }
+    if (!bouge) return;
+    if (paquets.length < 7 && liensActifs.length && Math.random() < .06) { var l = liensActifs[Math.floor(Math.random() * liensActifs.length)]; paquets.push({ a: l[0], b: l[1], t: 0 }); }
+    for (var z = paquets.length - 1; z >= 0; z--) {
+      var k2 = paquets[z], A = pts[k2.a], B = pts[k2.b];
+      k2.t += .016;
+      if (k2.t >= 1) { paquets.splice(z, 1); continue; }
+      cx.fillStyle = '#FFFFFF'; cx.beginPath(); cx.arc(A.x + (B.x - A.x) * k2.t, A.y + (B.y - A.y) * k2.t, 2.2, 0, 6.2832); cx.fill();
+    }
+  }
+  function boucle() { if (visible && !document.hidden) dessine(true); requestAnimationFrame(boucle); }
+  taille(); dessine(false);
+  var rt; window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(function () { taille(); dessine(false); }, 150); });
+  if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { visible = es[0].isIntersecting; }).observe(cv);
+  if (!calme) requestAnimationFrame(boucle);
+
+  /* demande de contact */
+  $('#f').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var nom = $('#f-nom').value.trim(), j = $('#f-joindre').value.trim(), s = $('#f-sujet').value, m = $('#f-msg').value.trim(), bad = !nom || !j;
+    $('#f-err').hidden = !bad;
+    if (bad) { $('#sortie').hidden = true; return; }
+    var txt = 'Bonjour,\n\nObjet : ' + s + '\n' + (m ? m + '\n' : '') + '\n' + nom + '\nContact : ' + j;
+    $('#s-txt').textContent = txt;
+    var mail = $('#c-mail').textContent.trim(), lien = $('#s-mail');
+    if (/^[^\s]+@[^\s]+\.[a-z]{2,}$/i.test(mail) && mail.indexOf('votre-domaine') < 0) { lien.href = 'mailto:' + mail + '?subject=' + encodeURIComponent('Demande : ' + s) + '&body=' + encodeURIComponent(txt); lien.hidden = false; } else lien.hidden = true;
+    $('#s-ok').hidden = true; $('#sortie').hidden = false;
+  });
+  $('#s-copie').addEventListener('click', function () {
+    var pre = $('#s-txt'), ok = function () { $('#s-ok').hidden = false; };
+    var sel = function () { var r = document.createRange(); r.selectNodeContents(pre); var g = getSelection(); g.removeAllRanges(); g.addRange(r); };
+    try { navigator.clipboard.writeText(pre.textContent).then(ok, sel); } catch (err) { sel(); }
+  });
+})();
+</script>
+
+</body></html>

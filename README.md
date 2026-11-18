@@ -9,7 +9,7 @@ Sélection de sites vitrines réalisés par Mikail Akturk (Nexalis, création de
 | Maison Liteau | [`maison-liteau/`](maison-liteau/) | Meubles en bois massif, catalogue et panier |
 | Le Grand Pouf | [`le-grand-pouf/`](le-grand-pouf/) | Meubles vintage, style années 70 |
 | Maison Vérane | [`maison-verane/`](maison-verane/) | Mobilier de créateur, récit au défilement |
-| Emara | [`emara/`](emara/) | Boutique de mode féminine, style Zara (maquette en cours) |
+| Emara | [`emara/`](emara/) | Boutique de mode féminine : collection, fiches produits, panier |
 
 Chaque site tient dans un seul fichier `index.html`, sans dépendance à installer : HTML, CSS et JavaScript.
 

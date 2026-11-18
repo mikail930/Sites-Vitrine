@@ -11,6 +11,6 @@ Sélection de sites vitrines réalisés par Mikail Akturk (Nexalis, création de
 | Maison Vérane | [`maison-verane/`](maison-verane/) | Mobilier de créateur, récit au défilement |
 | Emara | [`emara/`](emara/) | Boutique de mode féminine : collection, fiches produits, panier |
 
-Chaque site tient dans un seul fichier `index.html`, sans dépendance à installer : HTML, CSS et JavaScript.
+Chaque site fonctionne sans dépendance à installer : HTML, CSS et JavaScript. La plupart tiennent dans un seul fichier `index.html` ; Emara a plusieurs pages (accueil, collection, fiches produits).
 
 Maison Liteau, Le Grand Pouf et Maison Vérane sont des marques fictives créées pour la démonstration.
